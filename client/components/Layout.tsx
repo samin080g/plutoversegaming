@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import CookieConsent from "@/components/CookieConsent";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/context/AuthContext";
+import { track } from "@/lib/track";
 
 const navItems = [
   { to: "/", label: "Home" },
@@ -22,6 +23,10 @@ export default function Layout() {
   useEffect(() => {
     document.documentElement.classList.add("dark");
   }, []);
+
+  useEffect(() => {
+    track({ type: "page_view", path: location.pathname });
+  }, [location.pathname]);
 
   return (
     <div className="min-h-screen w-full bg-[radial-gradient(80%_60%_at_50%_-10%,rgba(168,85,247,0.35),transparent_50%),radial-gradient(60%_40%_at_90%_10%,rgba(59,130,246,0.25),transparent_35%),radial-gradient(50%_50%_at_10%_90%,rgba(236,72,153,0.25),transparent_45%)] bg-background text-foreground">
