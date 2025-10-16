@@ -12,9 +12,8 @@ const navItems = [
   { to: "/news", label: "News" },
   { to: "/tournaments", label: "Tournaments" },
   { to: "/about", label: "About" },
-  { to: "/dashboard", label: "Dashboard" },
   { to: "/contact", label: "Contact" },
-];
+] as const;
 
 export default function Layout() {
   const location = useLocation();
@@ -41,7 +40,7 @@ export default function Layout() {
           </NavLink>
 
           <nav className="ml-auto hidden md:flex items-center gap-1">
-            {navItems.map((item) => (
+            {(user ? [...navItems, { to: "/dashboard", label: "Dashboard" as const }] : navItems).map((item) => (
               <NavLink
                 key={item.to}
                 to={item.to}
