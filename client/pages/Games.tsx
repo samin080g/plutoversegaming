@@ -1,6 +1,10 @@
 import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/context/AuthContext";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
+import { track } from "@/lib/track";
 
 type Category = "FPS" | "Battle Royale" | "RPG" | "Sports";
 
@@ -19,6 +23,8 @@ const categories: Category[] = ["FPS", "Battle Royale", "RPG", "Sports"];
 
 export default function Games() {
   const [active, setActive] = useState<Category | "ALL">("ALL");
+  const { user, playGame, profile } = useAuth();
+  const navigate = useNavigate();
 
   const filtered = useMemo(() => {
     if (active === "ALL") return games;
@@ -59,7 +65,22 @@ export default function Games() {
                 <span className="px-2 py-1 text-xs rounded-md bg-accent/15 text-accent">NEON</span>
               </div>
               <div className="mt-4 flex items-center gap-2">
-                <Button size="sm" className="bg-primary hover:bg-primary/90 shadow-neon">Play</Button>
+                <Button
+                  size="sm"
+                  onClick={() => {
+                    if (!user) {
+                      toast.error("Please login to play and rank up");
+                      navigate("/login");
+                      return;
+                    }
+                    playGame();
+                    track({ type: "activity", path: location.pathname, label: `play:${g.title}` });
+                    toast.success(`+75 MMR • Rank: ${profile?.rankTier ?? "Rookie"}`);
+                  }}
+                  className="bg-primary hover:bg-primary/90 shadow-neon"
+                >
+                  Play
+                </Button>
                 <Button size="sm" variant="outline" className="border-accent text-accent hover:bg-accent/10">Details</Button>
               </div>
             </div>
