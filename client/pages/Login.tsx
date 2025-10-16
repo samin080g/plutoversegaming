@@ -3,6 +3,7 @@ import { useAuth } from "@/context/AuthContext";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { track } from "@/lib/track";
 
 export default function Login() {
   const { login, user } = useAuth();
@@ -30,6 +31,7 @@ export default function Login() {
       return;
     }
     toast.success("Welcome back!");
+    track({ type: "login", path: location.pathname, email });
     navigate("/dashboard");
   };
 
