@@ -3,6 +3,7 @@ import { useAuth } from "@/context/AuthContext";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { track } from "@/lib/track";
 
 export default function Signup() {
   const { signup, user } = useAuth();
@@ -34,6 +35,7 @@ export default function Signup() {
       return;
     }
     toast.success("Account created! Welcome ✨");
+    track({ type: "signup", path: location.pathname, email, username });
     navigate("/dashboard");
   };
 
