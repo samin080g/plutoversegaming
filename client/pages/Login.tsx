@@ -11,9 +11,10 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
-  if (user) {
-    navigate("/dashboard");
-  }
+  // Redirect if already logged in
+  React.useEffect(() => {
+    if (user) navigate("/dashboard");
+  }, [user, navigate]);
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
