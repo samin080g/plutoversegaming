@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import CookieConsent from "@/components/CookieConsent";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/context/AuthContext";
 
 const navItems = [
   { to: "/", label: "Home" },
@@ -16,6 +17,7 @@ const navItems = [
 
 export default function Layout() {
   const location = useLocation();
+  const { user, logout } = useAuth();
 
   useEffect(() => {
     document.documentElement.classList.add("dark");
@@ -52,8 +54,19 @@ export default function Layout() {
           </nav>
 
           <div className="ml-2 hidden md:flex gap-2">
-            <NavLink to="/login"><Button variant="ghost" className="hover:bg-secondary/60">Login</Button></NavLink>
-            <NavLink to="/signup"><Button className="bg-primary shadow-neon hover:bg-primary/90">Sign Up</Button></NavLink>
+            {user ? (
+              <>
+                <div className="px-3 py-2 rounded-md border border-border/60 bg-secondary/50 text-sm">
+                  {user.username}
+                </div>
+                <Button variant="ghost" className="hover:bg-secondary/60" onClick={logout}>Logout</Button>
+              </>
+            ) : (
+              <>
+                <NavLink to="/login"><Button variant="ghost" className="hover:bg-secondary/60">Login</Button></NavLink>
+                <NavLink to="/signup"><Button className="bg-primary shadow-neon hover:bg-primary/90">Sign Up</Button></NavLink>
+              </>
+            )}
           </div>
         </div>
       </header>
