@@ -5,11 +5,15 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 export default function Login() {
-  const { login } = useAuth();
+  const { login, user } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [submitting, setSubmitting] = useState(false);
+
+  if (user) {
+    navigate("/dashboard");
+  }
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
