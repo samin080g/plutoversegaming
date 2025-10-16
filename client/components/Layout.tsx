@@ -40,7 +40,10 @@ export default function Layout() {
           </NavLink>
 
           <nav className="ml-auto hidden md:flex items-center gap-1">
-            {(user ? [...navItems, { to: "/dashboard", label: "Dashboard" as const }] : navItems).map((item) => (
+            {(user
+              ? [...navItems, { to: "/dashboard", label: "Dashboard" as const }]
+              : navItems
+            ).map((item) => (
               <NavLink
                 key={item.to}
                 to={item.to}
@@ -48,7 +51,9 @@ export default function Layout() {
                   cn(
                     "px-3 py-2 rounded-md text-sm transition-colors",
                     "hover:text-accent-foreground hover:bg-accent/20",
-                    isActive ? "text-accent bg-accent/10" : "text-foreground/80",
+                    isActive
+                      ? "text-accent bg-accent/10"
+                      : "text-foreground/80",
                   )
                 }
               >
@@ -63,12 +68,26 @@ export default function Layout() {
                 <div className="px-3 py-2 rounded-md border border-border/60 bg-secondary/50 text-sm">
                   {user.username}
                 </div>
-                <Button variant="ghost" className="hover:bg-secondary/60" onClick={logout}>Logout</Button>
+                <Button
+                  variant="ghost"
+                  className="hover:bg-secondary/60"
+                  onClick={logout}
+                >
+                  Logout
+                </Button>
               </>
             ) : (
               <>
-                <NavLink to="/login"><Button variant="ghost" className="hover:bg-secondary/60">Login</Button></NavLink>
-                <NavLink to="/signup"><Button className="bg-primary shadow-neon hover:bg-primary/90">Sign Up</Button></NavLink>
+                <NavLink to="/login">
+                  <Button variant="ghost" className="hover:bg-secondary/60">
+                    Login
+                  </Button>
+                </NavLink>
+                <NavLink to="/signup">
+                  <Button className="bg-primary shadow-neon hover:bg-primary/90">
+                    Sign Up
+                  </Button>
+                </NavLink>
               </>
             )}
           </div>
@@ -81,10 +100,25 @@ export default function Layout() {
 
       <footer className="mt-10 border-t border-border/60 bg-background/60">
         <div className="container py-8 text-sm text-foreground/70 flex flex-col md:flex-row items-center gap-4">
-          <p>© {new Date().getFullYear()} Pluto Verse Gaming. All rights reserved.</p>
+          <p>
+            © {new Date().getFullYear()} Pluto Verse Gaming. All rights
+            reserved.
+          </p>
           <div className="md:ml-auto flex gap-4">
-            <a href="#" onClick={(e)=>e.preventDefault()} className="hover:text-accent">Privacy</a>
-            <a href="#" onClick={(e)=>e.preventDefault()} className="hover:text-accent">Terms</a>
+            <a
+              href="#"
+              onClick={(e) => e.preventDefault()}
+              className="hover:text-accent"
+            >
+              Privacy
+            </a>
+            <a
+              href="#"
+              onClick={(e) => e.preventDefault()}
+              className="hover:text-accent"
+            >
+              Terms
+            </a>
           </div>
         </div>
       </footer>

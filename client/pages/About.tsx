@@ -7,7 +7,9 @@ export default function About() {
             About Pluto Verse Gaming
           </h2>
           <p className="text-foreground/80 text-lg">
-            We are a global community of gamers forging the future of play. From FPS to RPGs and Battle Royale, we host neon‑lit tournaments, share pro tips, and celebrate every victory.
+            We are a global community of gamers forging the future of play. From
+            FPS to RPGs and Battle Royale, we host neon‑lit tournaments, share
+            pro tips, and celebrate every victory.
           </p>
           <div className="mt-8 grid sm:grid-cols-2 gap-6">
             <StatCard title="Founded" value="2025" />
@@ -21,12 +23,20 @@ export default function About() {
           <div className="relative rounded-3xl border border-border/60 bg-secondary/50 backdrop-blur-md p-8 shadow-neon">
             <h3 className="font-semibold text-xl mb-3">Our Mission</h3>
             <p className="text-foreground/80">
-              Empower players to compete, connect, and create. We build fair ladders, community‑driven events, and tools that help you rank up while having fun.
+              Empower players to compete, connect, and create. We build fair
+              ladders, community‑driven events, and tools that help you rank up
+              while having fun.
             </p>
             <div className="mt-6 grid gap-4">
-              <Bullet>Inclusive by design: everyone starts at Rookie and can rise.</Bullet>
-              <Bullet>Community‑first moderation and zero‑toxicity policy.</Bullet>
-              <Bullet>Cutting‑edge visuals, low latency, and global reach.</Bullet>
+              <Bullet>
+                Inclusive by design: everyone starts at Rookie and can rise.
+              </Bullet>
+              <Bullet>
+                Community‑first moderation and zero‑toxicity policy.
+              </Bullet>
+              <Bullet>
+                Cutting‑edge visuals, low latency, and global reach.
+              </Bullet>
             </div>
           </div>
         </div>

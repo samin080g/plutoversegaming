@@ -4,14 +4,27 @@ export type AuthUser = { username: string; email: string };
 
 type StoredUser = { username: string; email: string; passwordHash: string };
 
-type Profile = { email: string; username: string; mmr: number; plays: number; rankTier: string };
+type Profile = {
+  email: string;
+  username: string;
+  mmr: number;
+  plays: number;
+  rankTier: string;
+};
 
 type AuthContextValue = {
   user: AuthUser | null;
   profile: Profile | null;
   loading: boolean;
-  login: (email: string, password: string) => Promise<{ ok: boolean; error?: string }>;
-  signup: (username: string, email: string, password: string) => Promise<{ ok: boolean; error?: string }>;
+  login: (
+    email: string,
+    password: string,
+  ) => Promise<{ ok: boolean; error?: string }>;
+  signup: (
+    username: string,
+    email: string,
+    password: string,
+  ) => Promise<{ ok: boolean; error?: string }>;
   logout: () => void;
   playGame: () => void;
 };
@@ -97,7 +110,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const ensureProfile = (u: AuthUser) => {
     const all = getProfiles();
     if (!all[u.email]) {
-      all[u.email] = { email: u.email, username: u.username, mmr: 0, plays: 0, rankTier: "Rookie" };
+      all[u.email] = {
+        email: u.email,
+        username: u.username,
+        mmr: 0,
+        plays: 0,
+        rankTier: "Rookie",
+      };
       setProfiles(all);
     }
     setProfile(all[u.email]);
@@ -106,7 +125,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const login = async (email: string, password: string) => {
     const users = getUsers();
     const pwd = await hashPassword(password);
-    const match = users.find((u) => u.email.toLowerCase() === email.toLowerCase() && u.passwordHash === pwd);
+    const match = users.find(
+      (u) =>
+        u.email.toLowerCase() === email.toLowerCase() && u.passwordHash === pwd,
+    );
     if (!match) return { ok: false, error: "Invalid credentials" };
     const authUser = { username: match.username, email: match.email };
     setUser(authUser);
@@ -139,11 +161,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const playGame = () => {
     if (!user) return;
     const all = getProfiles();
-    const current = all[user.email] ?? { email: user.email, username: user.username, mmr: 0, plays: 0, rankTier: "Rookie" };
+    const current = all[user.email] ?? {
+      email: user.email,
+      username: user.username,
+      mmr: 0,
+      plays: 0,
+      rankTier: "Rookie",
+    };
     const gain = 75; // increase per play
     const mmr = current.mmr + gain;
     const rankTier = tierFromMMR(mmr);
-    const updated: Profile = { ...current, plays: current.plays + 1, mmr, rankTier };
+    const updated: Profile = {
+      ...current,
+      plays: current.plays + 1,
+      mmr,
+      rankTier,
+    };
     all[user.email] = updated;
     setProfiles(all);
     setProfile(updated);

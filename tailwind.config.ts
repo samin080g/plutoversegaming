@@ -81,8 +81,14 @@ export default {
           to: { height: "0" },
         },
         glow: {
-          "0%, 100%": { textShadow: "0 0 10px hsla(var(--primary),0.8), 0 0 30px hsla(var(--accent),0.6)" },
-          "50%": { textShadow: "0 0 18px hsla(var(--primary),1), 0 0 42px hsla(var(--accent),0.9)" },
+          "0%, 100%": {
+            textShadow:
+              "0 0 10px hsla(var(--primary),0.8), 0 0 30px hsla(var(--accent),0.6)",
+          },
+          "50%": {
+            textShadow:
+              "0 0 18px hsla(var(--primary),1), 0 0 42px hsla(var(--accent),0.9)",
+          },
         },
         float: {
           "0%,100%": { transform: "translateY(0)" },

@@ -94,9 +94,13 @@
 }
 
 @layer base {
-  * { @apply border-border; }
+  * {
+    @apply border-border;
+  }
 
-  body { @apply bg-background text-foreground; }
+  body {
+    @apply bg-background text-foreground;
+  }
 
   :where(p, span, li, h1, h2, h3, h4, h5, h6, a, button, label, td, th) {
     overflow-wrap: anywhere;
@@ -112,9 +116,13 @@
 
 @layer utilities {
   .neon-text {
-    text-shadow: 0 0 10px hsla(var(--primary),0.8), 0 0 30px hsla(var(--accent),0.6);
+    text-shadow:
+      0 0 10px hsla(var(--primary), 0.8),
+      0 0 30px hsla(var(--accent), 0.6);
   }
   .neon-bg {
-    box-shadow: 0 0 10px hsla(var(--primary),0.5), 0 0 30px hsla(var(--accent),0.35);
+    box-shadow:
+      0 0 10px hsla(var(--primary), 0.5),
+      0 0 30px hsla(var(--accent), 0.35);
   }
 }
