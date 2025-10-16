@@ -12,7 +12,7 @@ export default function Login() {
   const [submitting, setSubmitting] = useState(false);
 
   // Redirect if already logged in
-  React.useEffect(() => {
+  useEffect(() => {
     if (user) navigate("/dashboard");
   }, [user, navigate]);
 
