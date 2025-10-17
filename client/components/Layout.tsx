@@ -33,7 +33,11 @@ export default function Layout() {
       <header className="sticky top-0 z-40 border-b border-border/60 backdrop-blur-xl bg-background/60">
         <div className="container flex h-16 items-center gap-4">
           <NavLink to="/" className="group inline-flex items-center gap-2">
-            <div className="h-8 w-8 rounded-md bg-gradient-to-br from-fuchsia-500 to-cyan-400 shadow-neon animate-pulse" />
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F1579bc85573b486484f17f145027a3e1%2Ff8b7376a3d794d6b810bb9ba0b33f555?format=webp&width=800"
+              alt="Pluto Verse Gaming logo"
+              className="h-10 w-10 rounded-md object-cover shadow-neon"
+            />
             <span className="font-display text-lg md:text-xl tracking-widest bg-gradient-to-r from-fuchsia-400 via-cyan-300 to-fuchsia-400 bg-[length:200%_100%] bg-clip-text text-transparent animate-shine drop-shadow-[0_0_12px_rgba(168,85,247,0.5)]">
               Pluto Verse Gaming
             </span>
